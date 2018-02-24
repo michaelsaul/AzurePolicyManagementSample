@@ -2,7 +2,7 @@
 
 ## Content
 - [Overview](README.md#overview)
-- [Setting Up](README.md#setting_up)
+- [Setting Up](README.md#setting-up)
 - [ToDo](README.md#todo)
 
 ### Overview
