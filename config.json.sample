@@ -1,0 +1,21 @@
+{
+    "subscriptionID": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    "serviceAccount":{
+            "accountName": "user@contoso.com",
+            "role": "Reader"
+        },
+    "policyDefinition":[
+        {
+            "policyFile": "tagPolicyDefinition.json",
+            "policyName": "auditTags"
+        }
+    ],
+    "policySet":{
+        "policySetFile": "policySetDefinition.json",
+        "policySetName": "GeneralCompliancePolicySet"
+    },
+    "policyAssignment":{
+        "policyAssignmentName": "GeneralCompianceAssignment",
+        "resourceGroup": "ResourceGroup"
+    }
+}

@@ -1,0 +1,75 @@
+{
+    "description": "This will apply policies for required tags, allowed resources, and allowed regions",
+    "displayName": "GeneralPolicySet",
+    "metadata": {
+      "parameterScopes": {}
+    },
+    "parameters": {},
+    "policyDefinitions": [
+      {
+        "parameters": {
+          "listOfResourceTypesAllowed": {
+            "value": [
+              "Microsoft.Compute/virtualMachines",
+              "Microsoft.Compute/virtualMachines/extensions",
+              "Microsoft.Compute/virtualMachineScaleSets",
+              "Microsoft.Compute/virtualMachineScaleSets/extensions",
+              "Microsoft.Network/virtualNetworks",
+              "Microsoft.Network/publicIPAddresses",
+              "Microsoft.Network/networkSecurityGroups",
+              "Microsoft.Network/networkInterfaces",
+              "Microsoft.Sql/servers",
+              "Microsoft.Sql/servers/databases",
+              "Microsoft.Sql/servers/elasticpools",
+              "Microsoft.Sql/servers/jobAccounts",
+              "Microsoft.Sql/servers/resourcepools",
+              "Microsoft.Compute/images",
+              "Microsoft.Compute/disks",
+              "Microsoft.Compute/restorePointCollections",
+              "Microsoft.Compute/snapshots",
+              "Microsoft.Compute/availabilitySets",
+              "Microsoft.Network/virtualNetworkGateways",
+              "Microsoft.Network/trafficmanagerprofiles",
+              "Microsoft.Network/routeTables",
+              "Microsoft.Network/networkWatchers"
+            ]
+          }
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/a08ec900-254a-4555-9bf5-e42af04b5c5c"
+      },
+      {
+        "parameters": {
+          "listOfAllowedLocations": {
+            "value": [
+              "eastus",
+              "eastus2",
+              "westus",
+              "westus2",
+              "westcentralus",
+              "southcentralus",
+              "northcentralus",
+              "centralus"
+            ]
+          }
+        },
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c"
+      },
+      {
+        "parameters": {
+          "listOfTagValuesAllowed": {
+            "value": [
+              "front",
+              "middle",
+              "back"
+            ]
+          },
+          "tagName": {
+            "value": "ApplicationName"
+          }
+        },
+        "policyDefinitionId": "/subscriptions/1af1a52d-c11d-4ffe-bea9-a0bebdc2f71b/providers/Microsoft.Authorization/policyDefinitions/622bfd8b-d569-46d9-9ef9-cb02b7bcd074"
+      }
+    ],
+    "policyType": "Custom",
+    "type": "Microsoft.Authorization/policySetDefinitions"
+  }
