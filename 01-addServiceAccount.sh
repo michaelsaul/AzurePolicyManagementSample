@@ -24,7 +24,7 @@
 
 #Script Name: 01-addServiceAccount.sh
 #Author: Michael Saul
-#Version 0.1
+#Version 0.2
 #Description:
 #  
 

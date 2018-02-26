@@ -50,4 +50,4 @@ $ ./00-scaffoldSubscription.sh -f config.json
 ### ToDo
 In the next step, I plan to add the following:
 - Build the policy scripts to create _n_ number of policy definitions based on the configuration file.
-- Createa an Azure function that will report violations of the policy as defined in the policy configuration file.
+- Create an Azure Function that will report violations of the policy as defined in the policy configuration file.
