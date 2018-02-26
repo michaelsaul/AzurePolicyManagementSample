@@ -72,8 +72,8 @@ shift $((OPTIND-1))
 
 #Initialize more variables
 subscription_id="$(jq -cr .subscriptionID ${config_file})"
-account_name="$(jq -cr .serviceAccount.accountName ${config_file})"
-account_role="$(jq -cr .serviceAccount.role ${config_file})"
+# account_name="$(jq -cr .serviceAccount.accountName ${config_file})"
+# account_role="$(jq -cr .serviceAccount.role ${config_file})"
 policy_file="$(jq -cr .policyDefinition[0].policyFile ${config_file})"
 policy_name="$(jq -cr .policyDefinition[0].policyName ${config_file})"
 policy_set_file="$(jq -cr .policySet.policySetFile ${config_file})"
@@ -82,7 +82,11 @@ policy_assignment_name="$(jq -cr .policyAssignment.policyAssignmentName ${config
 resource_group_name="$(jq -cr .policyAssignment.resourceGroup ${config_file})"
 
 echo "Assigning service account"
-./01-addServiceAccount.sh -s ${subscription_id} -a ${account_name} -r ${account_role}
+jq -c ".serviceAccount[]" ${config_file} | while IFS='' read results;do
+        account_name=$(echo ${results} | jq -r .accountName)
+        account_role=$(echo ${results} | jq -r .role)
+        ./01-addServiceAccount.sh -s ${subscription_id} -a ${account_name} -r ${account_role}
+done
 
 echo "Creating policy definfion, policy set, and assignment"
 ./02a-createPolicyDefinitions.sh -s ${subscription_id} -f ${policy_file} -n ${policy_name}

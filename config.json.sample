@@ -1,9 +1,15 @@
 {
     "subscriptionID": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-    "serviceAccount":{
+    "serviceAccount":[
+        {
             "accountName": "user@contoso.com",
             "role": "Reader"
         },
+        {
+            "accountName": "user2@contoso.com",
+            "role": "Reader"
+        }
+    ],
     "policyDefinition":[
         {
             "policyFile": "tagPolicyDefinition.json",
