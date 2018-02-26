@@ -72,8 +72,8 @@ shift $((OPTIND-1))
 
 #Initialize more variables
 subscription_id="$(jq -cr .subscriptionID ${config_file})"
-account_name="$(jq -cr .serviceAccount.accountName ${config_file})"
-account_role="$(jq -cr .serviceAccount.role ${config_file})"
+# account_name="$(jq -cr .serviceAccount.accountName ${config_file})"
+# account_role="$(jq -cr .serviceAccount.role ${config_file})"
 policy_file="$(jq -cr .policyDefinition[0].policyFile ${config_file})"
 policy_name="$(jq -cr .policyDefinition[0].policyName ${config_file})"
 policy_set_file="$(jq -cr .policySet.policySetFile ${config_file})"
@@ -81,7 +81,13 @@ policy_set_name="$(jq -cr .policySet.policySetName ${config_file})"
 policy_assignment_name="$(jq -cr .policyAssignment.policyAssignmentName ${config_file})"
 resource_group_name="$(jq -cr .policyAssignment.resourceGroup ${config_file})"
 
-az role assignment delete --assignee ${account_name} --role ${account_role}
+echo "Deleting account roles."
+jq -c ".serviceAccount[]" ${config_file} | while IFS='' read results;do
+        account_name=$(echo ${results} | jq -r .accountName)
+        account_role=$(echo ${results} | jq -r .role)
+        az role assignment delete --assignee ${account_name} --role ${account_role}
+done
+
 az policy assignment delete --name ${policy_assignment_name} --resource-group ${resource_group_name}
 az policy set-definition delete --name ${policy_set_name}
 az policy definition delete --name ${policy_name}
