@@ -10,15 +10,96 @@
             "role": "Reader"
         }
     ],
-    "policyDefinition":[
+    "policyDefinitions":[
+        {
+            "policyName": "a08ec900-254a-4555-9bf5-e42af04b5c5c",
+            "policyType": "BuiltIn",
+            "parameters": {
+                "listOfResourceTypesAllowed": {
+                    "value": [
+                      "Microsoft.Compute/virtualMachines",
+                      "Microsoft.Compute/virtualMachines/extensions",
+                      "Microsoft.Compute/virtualMachineScaleSets",
+                      "Microsoft.Compute/virtualMachineScaleSets/extensions",
+                      "Microsoft.Network/virtualNetworks",
+                      "Microsoft.Network/publicIPAddresses",
+                      "Microsoft.Network/networkSecurityGroups",
+                      "Microsoft.Network/networkInterfaces",
+                      "Microsoft.Sql/servers",
+                      "Microsoft.Sql/servers/databases",
+                      "Microsoft.Sql/servers/elasticpools",
+                      "Microsoft.Sql/servers/jobAccounts",
+                      "Microsoft.Sql/servers/resourcepools",
+                      "Microsoft.Compute/images",
+                      "Microsoft.Compute/disks",
+                      "Microsoft.Compute/restorePointCollections",
+                      "Microsoft.Compute/snapshots",
+                      "Microsoft.Compute/availabilitySets",
+                      "Microsoft.Network/virtualNetworkGateways",
+                      "Microsoft.Network/trafficmanagerprofiles",
+                      "Microsoft.Network/routeTables",
+                      "Microsoft.Network/networkWatchers"
+                    ]
+                  }
+            }
+        },
+        {
+            "policyName": "e56962a6-4747-49cd-b67b-bf8b01975c4c",
+            "policyType": "BuiltIn",
+            "parameters": {
+                "listOfAllowedLocations": {
+                    "value": [
+                      "eastus",
+                      "eastus2",
+                      "westus",
+                      "westus2",
+                      "westcentralus",
+                      "southcentralus",
+                      "northcentralus",
+                      "centralus"
+                    ]
+                  }
+            }
+        },
         {
             "policyFile": "tagPolicyDefinition.json",
-            "policyName": "auditTags"
+            "policyName": "auditTags",
+            "policyType": "Custom",
+            "parameters": {
+                "listOfTagValuesAllowed": {
+                    "value": [
+                      "front",
+                      "middle",
+                      "back"
+                    ]
+                  },
+                  "tagName": {
+                    "value": "ApplicationName"
+                  }
+            }
+        },
+        {
+            "policyFile": "tagPolicyDefinition.json",
+            "policyName": "auditTags",
+            "policyType": "Custom",
+            "parameters": {
+                "listOfTagValuesAllowed": {
+                    "value": [
+                      "00001",
+                      "00002",
+                      "00042"
+                    ]
+                  },
+                  "tagName": {
+                    "value": "CostCenter"
+                  }
+            }
         }
     ],
     "policySet":{
-        "policySetFile": "policySetDefinition.json",
-        "policySetName": "GeneralCompliancePolicySet"
+        "policySetName": "GeneralCompliancePolicySet",
+        "policySetDisplayName": "GeneralCompliancePolicySet",
+        "policySetDescription": "This will apply policies for required tags, allowed resources, and allowed regions"
     },
     "policyAssignment":{
         "policyAssignmentName": "GeneralCompianceAssignment",

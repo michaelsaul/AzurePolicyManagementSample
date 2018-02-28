@@ -67,7 +67,7 @@
             "value": "ApplicationName"
           }
         },
-        "policyDefinitionId": "/subscriptions/1af1a52d-c11d-4ffe-bea9-a0bebdc2f71b/providers/Microsoft.Authorization/policyDefinitions/622bfd8b-d569-46d9-9ef9-cb02b7bcd074"
+        "policyDefinitionId": "/subscriptions/1af1a52d-c11d-4ffe-bea9-a0bebdc2f71b/providers/Microsoft.Authorization/policyDefinitions/auditTags"
       }
     ],
     "policyType": "Custom",
