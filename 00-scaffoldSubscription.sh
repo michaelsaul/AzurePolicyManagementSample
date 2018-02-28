@@ -24,7 +24,7 @@
 
 #Script Name: 00-scaffoldSubscription.sh
 #Author: Michael Saul
-#Version 0.2
+#Version 0.3
 #Description:
 #  
 
@@ -72,8 +72,6 @@ shift $((OPTIND-1))
 
 #Initialize more variables
 subscription_id="$(jq -cr .subscriptionID ${config_file})"
-policy_file="$(jq -cr .policyDefinition[0].policyFile ${config_file})"
-policy_name="$(jq -cr .policyDefinition[0].policyName ${config_file})"
 policy_set_file="$(jq -cr .policySet.policySetFile ${config_file})"
 policy_set_name="$(jq -cr .policySet.policySetName ${config_file})"
 policy_assignment_name="$(jq -cr .policyAssignment.policyAssignmentName ${config_file})"
@@ -83,10 +81,18 @@ echo "Assigning service account(s)."
 jq -c ".serviceAccount[]" ${config_file} | while IFS='' read results;do
         account_name=$(echo ${results} | jq -r .accountName)
         account_role=$(echo ${results} | jq -r .role)
+        
         ./01-addServiceAccount.sh -s ${subscription_id} -a ${account_name} -r ${account_role}
 done
 
-echo "Creating policy definfion, policy set, and assignment"
-./02a-createPolicyDefinitions.sh -s ${subscription_id} -f ${policy_file} -n ${policy_name}
+echo "Creating policy definfion(s)."
+jq -c '[.policyDefinition[] | select(.policyType == "Custom") | {policyFile, policyName}] | unique_by(.policyName) | .[]' ${config_file} | while IFS='' read results;do
+        
+    policy_file=$(echo ${results} | jq -r .policyFile)
+    policy_name=$(echo ${results} | jq -r .policyName)
+
+    ./02a-createPolicyDefinitions.sh -s ${subscription_id} -f ${policy_file} -n ${policy_name}
+done
+
 ./02b-createPolicySet.sh -s ${subscription_id} -f ${policy_set_file} -n ${policy_set_name}
 ./02c-createPolicyAssignment.sh -s ${subscription_id} -n ${policy_assignment_name} -p ${policy_set_name} -g ${resource_group_name}
