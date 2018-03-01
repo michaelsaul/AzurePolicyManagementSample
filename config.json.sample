@@ -13,7 +13,8 @@
     "policyDefinition":[
         {
             "policyFile": "tagPolicyDefinition.json",
-            "policyName": "auditTags"
+            "policyName": "auditTags",
+            "policyType": "Custom"
         }
     ],
     "policySet":{

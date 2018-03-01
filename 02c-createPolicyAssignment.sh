@@ -24,7 +24,7 @@
 
 #Script Name: 02c-createPolicyAssignment.sh
 #Author: Michael Saul
-#Version 0.3
+#Version 0.3.1
 #Description:
 #  
 
