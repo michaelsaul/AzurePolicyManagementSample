@@ -49,5 +49,5 @@ $ ./00-scaffoldSubscription.sh -f config.json
 
 ### ToDo
 In the next step, I plan to add the following:
-- Build the policy scripts to create _n_ number of policy definitions based on the configuration file.
+- Dynamically build a policy set-definition configuration from the policy definitons created from the config.json.
 - Create an Azure Function that will report violations of the policy as defined in the policy configuration file.
