@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "omsRecoveryVaultName": {
+            "value": "misaul-recoveryVault"
+        },
+        "omsRecoveryVaultRegion": {
+            "value": "West Europe"
+        },
+        "omsWorkspaceName": {
+            "value": "misaul-logAnalytics"
+        },
+        "omsWorkspaceRegion": {
+            "value": "East US"
+        },
+        "omsAutomationAccountName": {
+            "value": "misaul-automation"
+        },
+        "omsAutomationRegion": {
+            "value": "East US 2"
+        },
+        "azureAdminPwd": {
+            "value": "GEN-PASSWORD"
+        },
+        "azureAdmin": {
+            "value": "azureadmin"
+        },
+        "_artifactsLocation": {
+            "value": "https://misaulcloudshare.blob.core.windows.net/resources"
+        }
+    }
+}

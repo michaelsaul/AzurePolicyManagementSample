@@ -1,0 +1,32 @@
+{
+    "subscriptionID": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    "location": "westus",
+    "managementResourceGroupName": "Management",
+    "armTemplate": "azuredeploy.json",
+    "parametersFile": "azuredeploy.parameters.json",
+    "serviceAccount":[
+        {
+            "accountName": "user@contoso.com",
+            "role": "Reader"
+        },
+        {
+            "accountName": "user2@contoso.com",
+            "role": "Reader"
+        }
+    ],
+    "policyDefinition":[
+        {
+            "policyFile": "tagPolicyDefinition.json",
+            "policyName": "auditTags",
+            "policyType": "Custom"
+        }
+    ],
+    "policySet":{
+        "policySetFile": "policySetDefinition.json",
+        "policySetName": "GeneralCompliancePolicySet"
+    },
+    "policyAssignment":{
+        "policyAssignmentName": "GeneralCompianceAssignment",
+        "resourceGroup": "ResourceGroup"
+    }
+}
